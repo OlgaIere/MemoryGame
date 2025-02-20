@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pl">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Memory game</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&family=Lobster&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+            rel="stylesheet">
+        <link rel="stylesheet" href="./gameStyle.css">
+    </head>
+    <body>
+
+        <header>
+            <h1>Memory game</h1>
+            <h2>Train your memory</h2>
+        </header>
+        <main>
+            <article>
+
+                <div class="board">
+
+                    <div class="card" id="c0"></div>
+                    <div class="card" id="c1"></div>
+                    <div class="card" id="c2"></div>
+                    <div class="card" id="c3"></div>
+
+                    <div class="card" id="c4"></div>
+                    <div class="card" id="c5"></div>
+                    <div class="card" id="c6"></div>
+                    <div class="card" id="c7"></div>
+
+                    <div class="card" id="c8"></div>
+                    <div class="card" id="c9"></div>
+                    <div class="card" id="c10"></div>
+                    <div class="card" id="c11"></div>
+
+                    <div class="score"><h3>Turn counter: 0</h3></div>
+
+                </div>
+
+            </article>
+
+        </main>
+        <canvas id="myCanvas">
+            <div id="board1"></div>
+        </canvas>
+
+        <script src="./circles.js"></script>
+        <script src="./jquery-3.7.1.min.js"></script>
+        <script src="./memory.js"></script>
+    </body>
+</html>
