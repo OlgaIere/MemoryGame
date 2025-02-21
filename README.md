@@ -2,7 +2,11 @@
 A simple memory card game to train your memory. Match pairs of cards and complete the game in the fewest turns possible!
 
 
-https://github.com/user-attachments/assets/f102db98-0160-4422-b0cf-20eb3669863c
+
+
+https://github.com/user-attachments/assets/36227c97-3b8b-4454-85fe-f19bf1461937
+
+
 
 
 ## Features
