@@ -65,3 +65,16 @@ h2{
     margin-top: 5px;
     letter-spacing: 2px;
 }
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+}
+.board h1 {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+}

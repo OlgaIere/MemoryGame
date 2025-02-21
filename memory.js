@@ -1,55 +1,46 @@
 
 
-const cards = ["img01.jpg", "img02.jpg", "img03.jpg", "img04.jpg", "img05.jpg", "img06.jpg", "img01.jpg", "img02.jpg", "img03.jpg", "img04.jpg", "img05.jpg", "img06.jpg"];
-let c0 = document.getElementById('c0');
-let c1 = document.getElementById('c1');
-let c2 = document.getElementById('c2');
-let c3 = document.getElementById('c3');
-let c4 = document.getElementById('c4');
-let c5 = document.getElementById('c5');
-let c6 = document.getElementById('c6');
-let c7 = document.getElementById('c7');
-let c8 = document.getElementById('c8');
-let c9 = document.getElementById('c9');
-let c10 = document.getElementById('c10');
-let c11 = document.getElementById('c11');
+const cards = ["img/img01.jpg", "img/img02.jpg", "img/img03.jpg", "img/img04.jpg", "img/img05.jpg", "img/img06.jpg", "img/img01.jpg", "img/img02.jpg", "img/img03.jpg", "img/img04.jpg", "img/img05.jpg", "img/img06.jpg"];
 
-c0.addEventListener("click", function () { revealCard(0) });
-c1.addEventListener("click", function () { revealCard(1) });
-c2.addEventListener("click", function () { revealCard(2) });
-c3.addEventListener("click", function () { revealCard(3) });
+function shuffle(array){
+    for (let i = array.length - 1; i > 0; i--){
+        let j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
 
-c4.addEventListener("click", function () { revealCard(4) });
-c5.addEventListener("click", function () { revealCard(5) });
-c6.addEventListener("click", function () { revealCard(6) });
-c7.addEventListener("click", function () { revealCard(7) });
+shuffle(cards);
 
-c8.addEventListener("click", function () { revealCard(8) });
-c9.addEventListener("click", function () { revealCard(9) });
-c10.addEventListener("click", function () { revealCard(10) });
-c11.addEventListener("click", function () { revealCard(11) });
+
 
 let oneVisible = false;
 let turnCounter = 0;
 let visibleNumber;
 let lock = false;
-let pairsLeft = 6;
+let pairsLeft = cards.length / 2;
 
+for (let i = 0; i < cards.length; i++){
+    let card = $("#c" + i);
+    if (card.length){
+        card.data("image", cards[i]);
+        card.on("click", () => revealCard(i));
+    }
+}
 function revealCard(nr) {
+    let card = $("#c" + nr);
+    let opacityValue = card.css('opacity');
 
-    let opacityValue = $('#c'+nr).css('opacity');
-
-    if (opacityValue !=0 && lock == false) {
+    if (opacityValue !=0 && !lock) {
 
         lock = true;
 
-        let obraz = "url(img/" + cards[nr] + ")";
+        let imagePath = "url("+card.data("image") + ")";
 
-        $("#c" + nr).css('background-image', obraz);
-        $("#c" + nr).addClass('cardA');
-        $("#c" + nr).removeClass('card');
+        card.css('background-image', imagePath);
+        card.addClass('cardA').removeClass('card');
+        
 
-        if (oneVisible == false) {
+        if (!oneVisible) {
             //first card
             oneVisible = true;
             visibleNumber = nr;
@@ -58,7 +49,7 @@ function revealCard(nr) {
         else {
             //second card
 
-            if (cards[visibleNumber] == cards[nr]) {
+            if ($("#c" + visibleNumber).data("image") === card.data("image")) {
 
                 setTimeout(function () { hide2Cards(nr, visibleNumber) }, 750);
 
@@ -78,7 +69,7 @@ function hide2Cards(nr1, nr2) {
     $("#c" + nr2).css('opacity', '0');
 
     pairsLeft--;
-    if(pairsLeft == 0){
+    if(pairsLeft === 0){
         $('.board').html('<h1>You win!<br>Done in '+turnCounter+' turns</h1>');
         canvas.start()
     }
@@ -87,13 +78,8 @@ function hide2Cards(nr1, nr2) {
 }
 
 function restore2Cards(nr1, nr2){
-    $("#c" + nr1).css('background-image', 'url(img/pattern1.jpg');
-    $("#c" + nr1).addClass('card');
-    $("#c" + nr1).removeClass('cardA');
-
-    $("#c" + nr2).css('background-image', 'url(img/pattern1.jpg');
-    $("#c" + nr2).addClass('card');
-    $("#c" + nr2).removeClass('cardA');
+    $("#c" + nr1).css("background-image", "url(img/pattern1.jpg)").addClass("card").removeClass("cardA");
+    $("#c" + nr2).css("background-image", "url(img/pattern1.jpg)").addClass("card").removeClass("cardA");
 
     lock = false;
 }
